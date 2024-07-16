@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using YourNamespace.Models;
+using YourNamespace.Helpers;
 
 namespace YourNamespace.Services
 {
@@ -27,7 +28,7 @@ namespace YourNamespace.Services
             var loginData = new
             {
                 UserName = _companyConnection.Username,
-                _companyConnection.Password,
+                Password = _companyConnection.Password,
                 CompanyDB = _companyConnection.CompanyDBName
             };
 
@@ -53,6 +54,9 @@ namespace YourNamespace.Services
             {
                 throw new Exception("Failed to obtain SAP B1 session ID.");
             }
+
+            // Use the hardcoded series ID from CompanyConnection
+            arInvoice.Series = _companyConnection.Series;
 
             var client = _clientFactory.CreateClient();
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_companyConnection.ServiceLayerBase}Invoices");

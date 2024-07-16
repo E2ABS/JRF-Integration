@@ -1,4 +1,3 @@
-// CustomerService.cs
 using System;
 using System.Net.Http;
 using System.Text;
@@ -58,6 +57,9 @@ namespace YourNamespace.Services
             var client = _clientFactory.CreateClient();
             var request = new HttpRequestMessage(HttpMethod.Post, $"{_companyConnection.ServiceLayerBase}BusinessPartners");
 
+            // Include the CustSer from CompanyConnection
+            customer.Series = _companyConnection.CustSer;
+
             var jsonContent = JsonSerializer.Serialize(customer);
             request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
@@ -78,7 +80,7 @@ namespace YourNamespace.Services
 
         private class LoginResponse
         {
-            public string SessionId { get; set; }
+            public string? SessionId { get; set; }
         }
     }
 }

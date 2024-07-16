@@ -3,6 +3,7 @@ namespace YourNamespace.Models
 {
     public class ARInvoiceRequestModel
     {
+        public string Series { get; set; }
         public string? CardCode { get; set; }
         public string? DocDate { get; set; }
         public string? DocDueDate { get; set; }

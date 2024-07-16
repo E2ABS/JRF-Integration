@@ -11,5 +11,8 @@ namespace YourNamespace.Models
         public string? DbPassword { get; set; }
         public string? ServerType { get; set; }
 
+        public string? CustSer { get; set; }
+        public string? Series { get; set; }
+
     }
 }
