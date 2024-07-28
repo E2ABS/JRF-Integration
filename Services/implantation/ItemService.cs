@@ -34,10 +34,11 @@ namespace YourNamespace.Services
                         FROM 
                             ""OITM""
                         LEFT JOIN 
-                            ""ITM1"" ON OITM.""ItemCode"" = ITM1.""ItemCode"" AND ITM1.""PriceList"" = 1
+                            ""ITM1"" ON OITM.""ItemCode"" = ITM1.""ItemCode""
                         WHERE 
                             OITM.""validFor"" = 'Y'
                             AND OITM.""QryGroup64"" = 'Y'
+                            AND OITM.""frozenFor"" = 'N'
                     ";
                 }
                 else // Assuming SQL Server
@@ -53,10 +54,11 @@ namespace YourNamespace.Services
                         FROM 
                             OITM
                         LEFT JOIN 
-                            ITM1 ON OITM.ItemCode = ITM1.ItemCode AND ITM1.PriceList = 1
+                            ITM1 ON OITM.ItemCode = ITM1.ItemCode
                         WHERE 
                             OITM.validFor = 'Y'
                             AND OITM.QryGroup64 = 'Y'
+                            AND OITM.frozenFor = 'N'
                     ";
                 }
 
